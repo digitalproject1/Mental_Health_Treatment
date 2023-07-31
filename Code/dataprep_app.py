@@ -99,7 +99,7 @@ def filter_dataframe(df: pd.DataFrame) -> pd.DataFrame:
 
     return df
 
-def run_ds_dataprep_clean_app():
+def run_dataprep_app():
     df = load_data("/Data Privasi/laptop\Python/Final Project/Code/survey.csv")
     
     # Data Cleansing for Null Value, Unnecessary Features 
