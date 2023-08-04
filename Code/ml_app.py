@@ -1,13 +1,16 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import joblib
+import joblib as jl
+import pickle as pk
+from sklearn import metrics
+from sklearn.metrics import confusion_matrix, accuracy_score, f1_score, \
+                            precision_score,_dist_metrics,recall_score, fbeta_score                           
+from sklearn.metrics import classification_report, precision_recall_curve
+from sklearn.metrics import auc, roc_auc_score, roc_curve
+from sklearn.metrics import make_scorer, recall_score, log_loss
+from sklearn.metrics import average_precision_score
 
-ml_temp = """
-<div style="background-color:#080366;padding:1px;border-radius:15px">
-    <h3 style="color:white;font-family:calibri;font-size:22pt;text-align:center;">Machine Learning Section</h3>
-</div>
-"""
 
 # Function to preprocess the data and encode categorical variables
 def preprocess_data(data):
@@ -19,17 +22,25 @@ def preprocess_data(data):
     return data
 
 # Load the pre-trained machine learning model
-@st.cache(allow_output_mutation=True)
+@st.cache_data()
 def load_model(ml_model):
     if ml_model == 'Logistic Regression':
-        return joblib.load('models/lr_classifier')
+        return jl.load('Model/LR_Classifier.pkl')
     elif ml_model == 'Decision Tree':
-        return joblib.load('models/dt_classifier')
+        return jl.load('Model/DT_Classifier.pkl')
+    elif ml_model == 'Random Forest Classifier':
+        return jl.load('Model/RF_Classifier.pkl')
+    elif ml_model == 'KNeighborsClassifier':
+        return jl.load('Model/KNN.pkl') 
+    elif ml_model == 'Support Vector Classifier':
+        return jl.load('Model/SVM.pkl')
+    elif ml_model == 'XGBoost Classifier':
+        return jl.load('Model/XGBoost_Classifier.pkl')
     else:
-        return joblib.load('models/rf_classifier')
+        return jl.load('Model/Stacking_Classifier.pkl')
 
-def run_ml_app():
-    st.write(ml_temp, unsafe_allow_html=True)
+def ds_ml_app():
+    
     # Add your machine learning content here
 
     st.write('')
@@ -80,7 +91,9 @@ def run_ml_app():
     family_history = st.selectbox('Family History of Mental Illness', ['No', 'Yes'])
     work_interfere = st.selectbox('Mental Illness Interferes with Work', ['Never', 'Rarely', 'Sometimes', 'Often'])
     remote_work = st.selectbox('Remote Work', ['No', 'Yes'])
-    ml_model = st.selectbox('Machine Learning Model', ['Random Forest', 'Logistic Regression', 'Decision Tree'])
+    ml_model = st.selectbox('Machine Learning Model', ['Random Forest Classifier', 'Logistic Regression', 'Decision Tree Classifier',
+                                                       'XBoost Classifier','KNeighbors Classifier','Support Vector Classifier',
+                                                        'Stacking Classifier' ])
     
     # Convert input to a DataFrame
     input_data = pd.DataFrame({
@@ -115,4 +128,4 @@ def run_ml_app():
 
 
 if __name__ == "__main__":
-    run_ml_app()
+    ds_ml_app()
