@@ -49,14 +49,14 @@ temp_2 = """
             <h1 class='font-big'>Data Visualization</h1>
         <body>
         """
-@st.cache_data
+@st.cache
 def load_data(data):
     df = pd.read_csv(data)
     df = df.iloc[:,1:]
     return df  
 
 def filter_dataframe(df: pd.DataFrame) -> pd.DataFrame:
-    df = load_data("/Data Privasi/laptop\Python/Final Project/Code/survey.csv")
+    df = load_data("Data_Source/survey.csv")
     """
     Adds a UI on top of a dataframe to let viewers filter columns
 
@@ -108,8 +108,8 @@ def filter_dataframe(df: pd.DataFrame) -> pd.DataFrame:
 
     return df
 
-def run_eda_app():
-    df = load_data("/Data Privasi/laptop\Python/Final Project/Code/survey.csv")
+def ds_eda_app():
+    df = load_data("Data_Source/survey.csv")
     
     # Data Cleansing for Null Value and Unnecessary Features
     columns_to_drop = ['state', 'comments', 'Timestamp']
@@ -543,4 +543,4 @@ def run_eda_app():
                  st.dataframe(Self.merge(NotSelf,left_on='Age',right_on='Age'))
                 
 if __name__ == "__main__":
-    run_eda_app()
+    ds_eda_app()
