@@ -1,12 +1,12 @@
 import streamlit as st
 import streamlit.components.v1 as stc
 
-from ds_eda_app import run_ds_eda_app
-from ds_dataprep_clean_app import run_ds_dataprep_clean_app
-#from ml_sect import ml_section
+from eda_app import ds_eda_app
+from dataprep_clean_app import ds_dataprep_clean_app
+from ml_app import ds_ml_app
 
 home_temp = """
-            <div style="background-color:#0d0d0c;padding:1px;border-radius:25px">
+            <div style="background-color:#0e0f3f;padding:1px;border-radius:25px">
 		    <h2 style="color:white;font-family:calibri;text-align:center;">FINAL PROJECT - DATA SCIENCE </h2>
             </div>
             """
@@ -32,14 +32,10 @@ home2_temp = """
                   ul.justify-bullet { text-align: justify;list-style-position: outside;line-height:1.3}
                   ol.justify-numbering { text-align: justify;list-style-position: outside;line-height:1.4}
             </style>
-
-            <body>
-                <h1 class='font-big'>Meet Our Team</h1>
-            </body>
             """
 about_temp = """
-            <div style="background-color:#080366;padding:1px;border-radius:15px">
-		    <h3 style="color:white;font-family:calibri;font-size:22pt;text-align:center;">Mental Health Treatment Prediction System </h3>
+            <div style="background-color:#0e0f3f;padding:1px;border-radius:25px">
+		    <h2 style="color:white;font-family:calibri;text-align:center;">MENTAL HEALTH TREATMENT PREDICTION SYSTEM </h2>
             </div>
             """
 desc_about_temp = """
@@ -112,55 +108,39 @@ desc_about_temp = """
                         <li>comments : <i>Any additional notes or comments ?</i></li>
                     </ul>
                 </body>
-
                  """
+prep_temp = """
+            <div style="background-color:#0e0f3f;padding:1px;border-radius:25px">
+		    <h2 style="color:white;font-family:calibri;text-align:center;">DATA PREPROCESSING AND CLEANSING </h2>
+            </div>
+            """
+eda_temp = """
+            <div style="background-color:#0e0f3f;padding:1px;border-radius:25px">
+		    <h2 style="color:white;font-family:calibri;text-align:center;">EXPLORATORY DATA ANALYSIS (EDA) </h2>
+            </div>
+            """
+ml_temp = """
+            <div style="background-color:#0e0f3f;padding:1px;border-radius:25px">
+		    <h2 style="color:white;font-family:calibri;text-align:center;">MACHINE LEARNING</h2>
+            </div>
+            """
 def main_section():
-     
-     col1, mid, col2 = st.columns([1,1,25])
-     with col1:
-            st.image('/Data Privasi/laptop/Python/Final Project/image/unicorn.png', width=60)
-     with col2:
-            st.write('Unicorn Team')
-            st.image("/Data Privasi/laptop/Python/Final Project/image/DS.png", caption="Data Science Batch 26", use_column_width=True)
-
-     st.write(home_temp,unsafe_allow_html=True)
+     #st.write(home_temp,unsafe_allow_html=True)
      st.write(home2_temp,unsafe_allow_html=True)
-     #st.title("Home/Main Section")
-
-     #st.header("Meet Our Team")
 
      # Create a container to align images side by side
-     col1, col2, col3, col4 = st.columns(4)
+     st.image("Image/logo1.png",  use_column_width=False)
+     #images = {
+          #"Andi Muhammad Yusuf": "/Data Privasi/laptop/Python/Final Project/image/Andi.jpg"
+     #}
 
-     team_members = {
-          "Anindya Lokeswara": "/Data Privasi/laptop/Python/Final Project/image/Anin.jpg",
-          "Tatag Suryo Pambudi": "/Data Privasi/laptop/Python/Final Project/image/Tatag.jpg",
-          "Erdiah Ashida Nasirin": "/Data Privasi/laptop/Python/Final Project/image/Erdiah.jpg",
-          "Andi Muhammad Yusuf": "/Data Privasi/laptop/Python/Final Project/image/Andi.jpg"
-     }
-
-     # Use the columns to align images side by side
-     with col1:
-          st.image(team_members["Anindya Lokeswara"], caption="Anindya Lokeswara", width=150)
-
-     with col2:
-          st.image(team_members["Tatag Suryo Pambudi"], caption="Tatag Suryo Pambudi", width=150)
-
-     with col3:
-          st.image(team_members["Erdiah Ashida Nasirin"], caption="Erdiah Ashida Nasirin", width=150)
-
-     with col4:
-          st.image(team_members["Andi Muhammad Yusuf"], caption="Andi Muhammad Yusuf", width=150)
-
-     #st.header("About the Project")
-     #st.write("The purpose of this project is to complete the final project of Digital Skola Data Science Bootcamp.")
-
-     #st.header("General Overview")
-     #st.write("Add the general overview of the topic and data source here.")
-
+     
+     #st.sidebar.image(images["Andi Muhammad Yusuf"], width=90,use_column_width=False)
+     st.sidebar.write('Created by. Andi Muhammad Yusuf')
+     
 
 def main():
-    st.set_page_config(page_title="Data Science Bootcamp Final Project", page_icon=":chart_with_upwards_trend:")
+    st.set_page_config(page_title="Data Science Bootcamp Final Project", page_icon=":chart_with_upwards_trend:",layout='wide')
     st.sidebar.title("Navigation")
     section = st.sidebar.radio("Go to Menu", ("Home", "About Project","Data Preprocessing & Cleansing","Exploratory Data Analysis", "Machine Learning"))
 
@@ -170,13 +150,14 @@ def main():
         st.write(about_temp,unsafe_allow_html=True)
         st.write(desc_about_temp,unsafe_allow_html=True)
     elif section == "Data Preprocessing & Cleansing":
-        st.header("Data Preprocessing and Cleansing")
-        run_ds_dataprep_clean_app()
+        st.write(prep_temp,unsafe_allow_html=True)
+        ds_dataprep_clean_app()
     elif section == "Exploratory Data Analysis":
-        st.header("Exploratory Data Analysis (EDA)")
-        run_ds_eda_app()
-    #elif section == "Machine Learning":
-        #ml_section()
+        st.write(eda_temp,unsafe_allow_html=True)
+        ds_eda_app()
+    elif section == "Machine Learning":
+        st.write(ml_temp,unsafe_allow_html=True)
+        ds_ml_app()
 
 
 if __name__ == "__main__":
