@@ -47,7 +47,7 @@ def load_data(data):
     df = df.iloc[:,1:]
     return df  
 def filter_dataframe(df: pd.DataFrame) -> pd.DataFrame:
-    df = load_data("/Data Privasi/laptop\Python/Final Project/Code/survey.csv")
+    df = load_data("Data_Source/survey.csv")
     """
     Adds a UI on top of a dataframe to let viewers filter columns
 
@@ -99,8 +99,8 @@ def filter_dataframe(df: pd.DataFrame) -> pd.DataFrame:
 
     return df
 
-def run_dataprep_app():
-    df = load_data("/Data Privasi/laptop\Python/Final Project/Code/survey.csv")
+def ds_dataprep_clean_app():
+    df = load_data("Data_Source/survey.csv")
     
     # Data Cleansing for Null Value, Unnecessary Features 
     columns_to_drop = ['state', 'comments', 'Timestamp']
@@ -221,4 +221,4 @@ def run_dataprep_app():
                  st.dataframe(df_clean_age.groupby(by='Age').agg(Qty=('Age','count')).sort_values(by='Qty',ascending=False))
                  st.text('%s%s' % (df_clean_age['Age'].nunique(),' data'))
 if __name__ == "__main__":
-    run_ds_dataprep_clean_app()
+    ds_dataprep_clean_app()
