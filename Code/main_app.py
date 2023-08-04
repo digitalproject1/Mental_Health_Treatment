@@ -2,7 +2,7 @@ import streamlit as st
 import streamlit.components.v1 as stc
 
 from eda_app import ds_eda_app
-from dataprep_clean_app import ds_dataprep_clean_app
+from dataprep_app import ds_dataprep_app
 from ml_app import ds_ml_app
 
 home_temp = """
