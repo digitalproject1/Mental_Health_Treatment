@@ -99,7 +99,7 @@ def filter_dataframe(df: pd.DataFrame) -> pd.DataFrame:
 
     return df
 
-def ds_dataprep_clean_app():
+def ds_dataprep_app():
     df = load_data("Data_Source/survey.csv")
     
     # Data Cleansing for Null Value, Unnecessary Features 
@@ -221,4 +221,4 @@ def ds_dataprep_clean_app():
                  st.dataframe(df_clean_age.groupby(by='Age').agg(Qty=('Age','count')).sort_values(by='Qty',ascending=False))
                  st.text('%s%s' % (df_clean_age['Age'].nunique(),' data'))
 if __name__ == "__main__":
-    ds_dataprep_clean_app()
+    ds_dataprep_app()
