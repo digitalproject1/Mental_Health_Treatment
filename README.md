@@ -1,5 +1,5 @@
 <p> <img src=Image/logo1.png>
-**MENTAL HEALTH TREATMENT PREDICTION SYSTEM**
+<p><stong>MENTAL HEALTH TREATMENT PREDICTION SYSTEM</stong></p>
 
 "Mental Health in Tech Survey" is the dataset that was collected in 2014. This data is the result of the survey that measures attitude toward mental health and frequency of mental illness disorders in one of the tech workplace.
 
