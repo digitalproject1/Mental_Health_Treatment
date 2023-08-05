@@ -41,7 +41,7 @@ temp_2 = """
             <h1 class='font-big'>Data Visualization</h1>
         <body>
         """
-@st.cache_data
+@st.cache
 def load_data(data):
     df = pd.read_csv(data)
     df = df.iloc[:,1:]
