@@ -151,7 +151,7 @@ def main():
         st.write(desc_about_temp,unsafe_allow_html=True)
     elif section == "Data Preprocessing & Cleansing":
         st.write(prep_temp,unsafe_allow_html=True)
-        ds_dataprep_clean_app()
+        ds_dataprep_app()
     elif section == "Exploratory Data Analysis":
         st.write(eda_temp,unsafe_allow_html=True)
         ds_eda_app()
