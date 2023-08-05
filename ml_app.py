@@ -116,16 +116,24 @@ def ds_ml_app():
     prediction_text = "Mental health treatment is needed." if prediction[0] == 1 else "Mental health treatment is not needed."
 
     # Display the prediction
-    st.subheader('Prediction:')
+    st.subheader('Prediction')
     st.write(prediction_text)
 
     # Improve prediction_proba text
-    st.subheader('Prediction Probability:')
+    st.subheader('Prediction Probability')
     if prediction[0] == 1:
         st.write(f"There is a {prediction_proba[0]*100:.2f}% probability that mental health treatment is needed.")
     else:
         st.write(f"There is a {prediction_proba[0]*100:.2f}% probability that mental health treatment is not needed.")
 
+# Improve prediction_proba text
+    st.subheader('Suggestion')
+    if prediction[0] == 1:
+        st.write("If you or someone you know is struggling with mental health, it's essential to seek help. Reach out to mental health professionals, support groups, or helplines to get the support you need.")
+        st.write("- Seeking professional help can make a difference -")
+    else:
+        st.write("Even if mental health treatment is not predicted to be needed, it's crucial to prioritize your mental well-being. Engaging in self-care practices, talking to friends or family, and seeking professional guidance can contribute to a healthier and happier life.")
+        st.write("- Taking care of your mental health is essential for overall well-being -")
 
 if __name__ == "__main__":
     ds_ml_app()
