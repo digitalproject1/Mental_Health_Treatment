@@ -22,7 +22,7 @@ def preprocess_data(data):
     return data
 
 # Load the pre-trained machine learning model
-@st.cache()
+@st.cache(allow_output_mutation=True)
 def load_model(ml_model):
     if ml_model == 'Logistic Regression':
         return jl.load('Model/LR_Classifier.pkl')
